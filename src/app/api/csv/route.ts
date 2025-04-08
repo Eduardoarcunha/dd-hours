@@ -1,6 +1,12 @@
 import { NextResponse } from 'next/server';
 import Papa from 'papaparse';
 
+interface DataRow {
+  matricula: string;
+  nome: string;
+  horas: string;
+}
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const id = searchParams.get("id");
@@ -27,12 +33,14 @@ export async function GET(request: Request) {
     }
     const csvText = await res.text();
 
-    const parsed = Papa.parse(csvText, {
+    // Pass the DataRow type to Papa.parse so parsed.data is typed as DataRow[]
+    const parsed = Papa.parse<DataRow>(csvText, {
       header: true,
       skipEmptyLines: true,
     });
 
-    const record = parsed.data.find((row: any) => row.matricula === id);
+    // Here, the row parameter is automatically typed as DataRow.
+    const record = parsed.data.find((row: DataRow) => row.matricula === id);
 
     if (!record) {
       return NextResponse.json(
