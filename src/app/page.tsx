@@ -29,13 +29,13 @@ export default function Home() {
 
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center py-12">
+    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center">
       {/* Branding Section */}
       <div className="text-center mb-8">
         <Image
           src="/logo.png" // Ensure your image is in the public folder
           alt="Company Logo"
-          width={150}
+          width={125}
           height={200}
           className="mx-auto mb-10"
         />

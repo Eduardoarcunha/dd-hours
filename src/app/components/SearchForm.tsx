@@ -31,7 +31,7 @@ export default function SearchForm({
                 </svg>
                 {/* Search input */}
                 <input
-                    type="text"
+                    type="number"
                     value={inputId}
                     onChange={(e) => setInputId(e.target.value)}
                     placeholder="Número de matrícula..."
